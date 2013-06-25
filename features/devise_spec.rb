@@ -85,8 +85,8 @@ feature 'Authentication with Devise' do
         click_on('Sign in')
       end
 
-      expect(page).to have_content('Connecté')
-      expect(page).to have_content('Mon Compte')
+      expect(page).to have_content 'Connecté'
+      expect(page).to have_content :all, 'Mon Compte'
     end
   end
 
@@ -98,7 +98,7 @@ feature 'Authentication with Devise' do
       click_on 'logout' # Your LogOut button/link must have the id #logout
 
       expect(page).to have_content 'Déconnecté'
-      expect(page).to have_no_content 'Mon Compte'
+      expect(page).to have_no_content :all, 'Mon Compte'
       expect(page).to have_no_content 'Moi'
     end
   end

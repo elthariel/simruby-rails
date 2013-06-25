@@ -69,11 +69,13 @@ feature 'Gazooy Simple' do
       visit gazooies_path
 
       within('.gazooy-block:nth-of-type(1)') do
-        img = find('img.avatar')
-        img.trigger 'click'
+        # Image must be inside the <a> / clickable
+        within('a.avatar') { expect(page).to have_selector 'img.avatar' }
+        find('img.avatar').trigger 'click'
       end
 
-      current_path.should == profile_path(user.profile)
+      page.should have_content "@#{user.username}"
+      current_path.should == profile_path(user.username)
     end
   end
 
@@ -86,8 +88,13 @@ feature 'Gazooy Simple' do
       end
     end
 
-    it 'opens a modal form when you click on \'Gazooyer\'', js: true do
+    it 'opens a modal form when you click on \'Gazooyer\''  do
       visit root_path
+
+      page.should have_no_content 'Gazooyez!'
+      page.should have_no_field 'gazooy[text]'
+      page.should have_no_button 'Envoyer !'
+
       within('.navbar-inner') do
         click_on 'Gazooyer'
       end
@@ -97,7 +104,7 @@ feature 'Gazooy Simple' do
       within('.modal-footer') { page.should have_button 'Envoyer !' }
     end
 
-    it 'creates Gazooy when filling and submitting the form', js: true do
+    it 'creates Gazooy when filling and submitting the form' do
       gz = "Ca gazooy sec !"
 
       visit root_path
@@ -107,13 +114,13 @@ feature 'Gazooy Simple' do
 
       within('#new_gazooy') do
         fill_in 'gazooy[text]', with: gz
-        click_on 'Envoyer !'
+        find('input[type=submit]').trigger 'click'
       end
 
-      # visit root_path
-      # page.should have_content gz
-      # visit gazooies_path
-      # page.should have_content gz
+      visit gazooies_path
+      page.should have_content gz
+      visit root_path
+      page.should have_content gz
     end
 
 

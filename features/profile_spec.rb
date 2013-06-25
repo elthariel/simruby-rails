@@ -52,7 +52,7 @@ feature 'Profile' do
 
   it 'display a link to profile edition in the navbar', js: true do
     visit root_path
-    page.should have_content 'Mon Profile'
+    page.should have_content :all, 'Mon Profile'
 
     within('.navbar') do
       click_on 'account-dropdown' # Bootstrap's %a.dropdown-toggle must have id #account-dropdown
