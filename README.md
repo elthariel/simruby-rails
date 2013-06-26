@@ -32,30 +32,30 @@ Maintenant, il faut editer le Gemfile de votre application pour
 ajouter toutes les dependances des tests unitaires :
 
 ```ruby
-    group :development, :test do
-      # Testing framework for rails 3.x and 4.x
-      gem 'rspec-rails'
-      # Some old stuff borrowed from Perl.
-      gem 'faker', git: 'git://github.com/stympy/faker.git'
-      # Some tools to generate test data
-      gem 'factory_girl_rails'
-      # Use debugger
-      gem 'debugger'
-      # Use capybara (run acceptance test in a browser)
-      gem 'capybara'
-      # Deploy the right version of PhantomJS using rubygems
-      gem 'phantomjs', :require => 'phantomjs/poltergeist'
-      # Use phantomjs (acceptance tests are truely headless)
-      gem 'poltergeist'
-      # Screenshots on failure
-      gem 'capybara-screenshot'
-      # Database cleaner for test suite
-      gem 'database_cleaner'
-      # Capybara test in a real browser for kikouloliness
-      gem 'selenium-webdriver'
-      # Code coverage tool
-      gem 'simplecov', :require => false
-    end
+group :development, :test do
+  # Testing framework for rails 3.x and 4.x
+  gem 'rspec-rails'
+  # Some old stuff borrowed from Perl.
+  gem 'faker', git: 'git://github.com/stympy/faker.git'
+  # Some tools to generate test data
+  gem 'factory_girl_rails'
+  # Use debugger
+  gem 'debugger'
+  # Use capybara (run acceptance test in a browser)
+  gem 'capybara'
+  # Deploy the right version of PhantomJS using rubygems
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
+  # Use phantomjs (acceptance tests are truely headless)
+  gem 'poltergeist'
+  # Screenshots on failure
+  gem 'capybara-screenshot'
+  # Database cleaner for test suite
+  gem 'database_cleaner'
+  # Capybara test in a real browser for kikouloliness
+  gem 'selenium-webdriver'
+  # Code coverage tool
+  gem 'simplecov', :require => false
+end
 ```
 
 Maintenant mettez à jour votre bundle
@@ -70,12 +70,12 @@ ajouter ces lignes dans le fichier config/application.rb, dans le bloc
 principal de configuration:
 
 ```ruby
-    config.generators do |g|
-      g.view_specs false
-      g.helper_specs false
-      g.routing_specs false
-      g.controller_specs false
-    end
+config.generators do |g|
+  g.view_specs false
+  g.helper_specs false
+  g.routing_specs false
+  g.controller_specs false
+end
 ```
 
 Vous devriez maintenant pouvoir executer les specs :
