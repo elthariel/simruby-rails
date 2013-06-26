@@ -22,7 +22,7 @@ describe Api::GazooiesController do
       assigns(:gazooy).should eq(gazooy)
     end
     it "check the render for a [ko] gazooy" do
-      get :show, {:id => 999999} # 9999999 is not supposed to exist :-)
+      get :show, {:id => 999999} # 9999999 just to show it's not supposed to exist :-)
       assigns(:gazooy).should be_nil
     end
   end
