@@ -79,7 +79,14 @@ feature 'Gazooy Simple' do
     end
   end
 
-  describe 'Create' do
+  describe 'Create', js: true do
+    def open_gazooy_form
+      visit root_path
+      within('.navbar-inner') do
+        click_on 'Gazooyer'
+      end
+    end
+
     scenario 'There\'s a link in the navbar' do
       visit root_path
 
@@ -91,26 +98,25 @@ feature 'Gazooy Simple' do
     it 'opens a modal form when you click on \'Gazooyer\''  do
       visit root_path
 
+      # The form is not displayed by default
       page.should have_no_content 'Gazooyez!'
-      page.should have_no_field 'gazooy[text]'
-      page.should have_no_button 'Envoyer !'
+      page.should have_no_field   'gazooy[text]'
+      page.should have_no_button  'Envoyer !'
 
+      # Clicking on 'Gazooyer' opens the modal with the form
       within('.navbar-inner') do
         click_on 'Gazooyer'
       end
 
       within('.modal-header') { page.should have_content 'Gazooyez!' }
-      within('.modal-body') { page.should have_field 'gazooy[text]' }
-      within('.modal-footer') { page.should have_button 'Envoyer !' }
+      within('.modal-body')   { page.should have_field   'gazooy[text]' }
+      within('.modal-footer') { page.should have_button  'Envoyer !' }
     end
 
     it 'creates Gazooy when filling and submitting the form' do
       gz = "Ca gazooy sec !"
 
-      visit root_path
-      within('.navbar-inner') do
-        click_on 'Gazooyer'
-      end
+      open_gazooy_form
 
       within('#new_gazooy') do
         fill_in 'gazooy[text]', with: gz
@@ -123,10 +129,27 @@ feature 'Gazooy Simple' do
       page.should have_content gz
     end
 
+    it 'displays a counter of the remaining characters' do
+      open_gazooy_form
 
+      within('#new_gazooy') do
+        page.should have_content '142'
+        fill_in 'gazooy[text]', with: '12'
+        page.should have_content '140'
+        fill_in 'gazooy[text]', with: '1234567890'
+        page.should have_content '132'
+      end
+    end
 
+    scenario 'A button can dismiss the modal' do
+      open_gazooy_form
+
+      within('#new_gazooy') do
+        click_on 'Fermer'
+      end
+      page.should have_no_content 'Envoyer !'
+      page.should have_no_content 'Gazooyez!'
+      page.should have_no_field   'gazooy[text]'
+    end
   end
-
-
-
 end
