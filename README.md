@@ -31,6 +31,7 @@ Depuis la vm vagrant fournie ici: http://github.com/elthariel/simruby
 Maintenant, il faut editer le Gemfile de votre application pour
 ajouter toutes les dependances des tests unitaires :
 
+```ruby
     group :development, :test do
       # Testing framework for rails 3.x and 4.x
       gem 'rspec-rails'
@@ -55,6 +56,7 @@ ajouter toutes les dependances des tests unitaires :
       # Code coverage tool
       gem 'simplecov', :require => false
     end
+```
 
 Maintenant mettez à jour votre bundle
 
@@ -67,12 +69,14 @@ la génération des specs par les générateurs de rails. Il faut donc
 ajouter ces lignes dans le fichier config/application.rb, dans le bloc
 principal de configuration:
 
+```ruby
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
       g.routing_specs false
       g.controller_specs false
     end
+```
 
 Vous devriez maintenant pouvoir executer les specs :
 
