@@ -63,13 +63,13 @@ feature 'Gazooy::HashTags' do
       page.should have_no_content '#ht0'
       page.should have_no_content '#ht3'
       page.should have_content '#ht10'
-      page.should have_content '#ht14'
+      page.should have_content '#ht13'
     end
 
-    click_on '#ht14' # Leads to /hash_tags/ht14
-    page.should have_content '#ht14 gazooy number 0'
-    page.should have_content '#ht14 gazooy number 7'
-    page.should have_content '#ht14 gazooy number 14'
+    click_on '#ht13' # Leads to /hash_tags/ht13
+    page.should have_content '#ht13 gazooy number 0'
+    page.should have_content '#ht13 gazooy number 7'
+    page.should have_content '#ht13 gazooy number 13'
     page.should have_no_content '#ht12 gazooy number 0'
     page.should have_no_content '#ht0 gazooy number 0'
   end
