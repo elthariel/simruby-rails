@@ -25,6 +25,8 @@ Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
+  # Use color in STDOUT
+  config.color_enabled = true
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
