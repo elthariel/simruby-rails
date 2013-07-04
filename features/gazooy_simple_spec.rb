@@ -71,7 +71,7 @@ feature 'Gazooy Simple' do
       within('.gazooy-block:nth-of-type(1)') do
         # Image must be inside the <a> / clickable
         within('a.avatar') { expect(page).to have_selector 'img.avatar' }
-        find('img.avatar').click# 'click'
+        find('img.avatar').click
       end
 
       page.should have_content "@#{user.username}"
@@ -120,7 +120,7 @@ feature 'Gazooy Simple' do
 
       within('#new_gazooy') do
         fill_in 'gazooy[text]', with: gz
-        find('input[type=submit]').click# 'click'
+        find('input[type=submit]').click
       end
 
       visit gazooies_path
