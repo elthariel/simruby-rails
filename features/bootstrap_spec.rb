@@ -17,27 +17,27 @@ feature 'Twitter\'s Bootstrap CSS framework' do
 
     page.should have_css('.container')
     page.should have_css('.row')
-    page.should have_css('.span3')     # Menu a gauche/droite
-    page.should have_css('.span9')     # Main content
+    page.should have_css('.col-md-4')     # Menu a gauche/droite
+    page.should have_css('.col-md-8')     # Main content
   end
 
   it 'provides some cool graphic graphic tricks' do
     visit root_path
 
     page.should have_css('.well')      # Utilise un well qq part, ca fait tjs clase
-    page.should have_css('.hero-unit') # Utilise un Hero Unit sur la page d'accueil, c'est classe aussi
+    page.should have_css('.jumbotron') # Utilise un Hero Unit sur la page d'accueil, c'est classe aussi
   end
 
   it 'provides a cool navbar' do
     visit root_path
 
-    within '.navbar-fixed-top' do
+    within 'nav.navbar-default' do
       # Ici je verifie que tout les elements d'une navbar twitter bootstrap sont presents.
       page.should have_css('.container')
-      page.should have_css('.navbar-inner')
-      page.should have_css('a.brand')
+      page.should have_css('.navbar-header')
+      page.should have_css('a.navbar-brand')
       page.should have_css('ul.nav')
-      page.should have_css('.pull-right')   # Ca c'est pratique pour tout ce qui touche au login.
+      page.should have_css('.navbar-right')   # Ca c'est pratique pour tout ce qui touche au login.
     end
   end
 end

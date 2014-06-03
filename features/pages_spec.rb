@@ -51,7 +51,7 @@ SupaContenta"
       visit '/'
       expect(page).to have_css('.navbar')
       expect(page).to have_css('ul.nav li a') # This is navbar links
-      expect(find 'a.brand').to have_content('Gazooyr')
+      expect(find 'a.navbar-brand').to have_content('Gazooyr')
     end
   end
 

@@ -35,5 +35,9 @@ describe PagesController do
       delete("/pages/1").should route_to("pages#destroy", :id => "1")
     end
 
+    it "provides a catch-all route (i.e. /about routes to page with the slug 'about')" do
+      get("/about").should route_to("pages#show", id: 'about')
+    end
+
   end
 end

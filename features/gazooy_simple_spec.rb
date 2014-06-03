@@ -34,7 +34,7 @@ feature 'Gazooy Simple' do
     it 'displays a \'Stream\' link in the navbar to go to gazooies#index' do
       visit root_path
 
-      within('.navbar-inner') do
+      within('.navbar-default') do
         click_on 'Stream'
       end
 
@@ -82,7 +82,7 @@ feature 'Gazooy Simple' do
   describe 'Create', js: true do
     def open_gazooy_form
       visit root_path
-      within('.navbar-inner') do
+      within('.navbar-default') do
         click_on 'Gazooyer'
       end
     end
@@ -90,7 +90,7 @@ feature 'Gazooy Simple' do
     scenario 'There\'s a link in the navbar' do
       visit root_path
 
-      within('.navbar-inner') do
+      within('.navbar-default') do
         page.should have_link 'Gazooyer'
       end
     end
@@ -104,7 +104,7 @@ feature 'Gazooy Simple' do
       page.should have_no_button  'Envoyer !'
 
       # Clicking on 'Gazooyer' opens the modal with the form
-      within('.navbar-inner') do
+      within('.navbar-default') do
         click_on 'Gazooyer'
       end
 
@@ -144,9 +144,10 @@ feature 'Gazooy Simple' do
     scenario 'A button can dismiss the modal' do
       open_gazooy_form
 
-      within('#new_gazooy') do
+      within('#new_gazooy_modal') do
         click_on 'Fermer'
       end
+
       page.should have_no_content 'Envoyer !'
       page.should have_no_content 'Gazooyez!'
       page.should have_no_field   'gazooy[text]'

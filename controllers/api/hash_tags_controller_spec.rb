@@ -17,7 +17,7 @@ describe Api::HashTagsController do
   end
 
   describe "GET API show HashTags" do
-    it "Return all gazooies.limite(50) found on a specific hash_tag" do
+    it "Return all gazooies.limit(50) found on a specific hash_tag" do
       gazooy = Gazooy.create! valid_attributes_gazooies
       hash_tag = HashTag.last
       get :show, {:id => hash_tag.name}

@@ -25,20 +25,26 @@
 
 require 'spec_helper'
 
-shared_context 'authenticated' do
-  given! :user do
-    User.create!(email: 'test@example.com', username: 'test',
-                 password: 'qweasd', password_confirmation: 'qweasd')
-  end
-  before(:each) do
-    visit new_user_session_path
-
-    within('#new_user') do
-      fill_in 'user[username]', with: user.username
-      fill_in 'user[password]', with: user.password
-      check 'user[remember_me]'
-
-      click_on "Sign in"
+if defined? User
+  shared_context 'authenticated' do
+    given! :user do
+      User.create!(email: 'test@example.com', username: 'test',
+                   password: 'qweasd', password_confirmation: 'qweasd')
     end
+    before(:each) do
+      visit new_user_session_path
+
+      within('#new_user') do
+        fill_in 'user[username]', with: user.username
+        fill_in 'user[password]', with: user.password
+        check 'user[remember_me]'
+
+        click_on "Sign in"
+      end
+    end
+  end
+else
+  shared_context 'authenticated' do
+    puts "User doesn't exist. Devise might not be implemented yet"
   end
 end

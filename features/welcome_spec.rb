@@ -14,7 +14,8 @@ require 'spec_helper'
 feature "Front Page" do
   it "sais Welcome !" do
     visit '/'
-    expect(page).to have_content ("Bienvenue sur Gazooyr")
+    expect(page).to have_content ("You're on Gazooyr !")
+    expect(page).to have_content ("Le twitter qu'il est vachement plus mieux")
   end
 
   it "displays Trends" do
@@ -31,7 +32,7 @@ feature "Front Page" do
     visit '/'
     expect(page).to have_css('.navbar')
     expect(page).to have_css('ul.nav li a') # This is navbar links
-    expect(find 'a.brand').to have_content('Gazooyr')
+    expect(find 'a.navbar-brand').to have_content('Gazooyr')
   end
 
 end

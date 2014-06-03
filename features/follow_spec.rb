@@ -66,7 +66,7 @@ feature 'Follower / Followee' do
     users.each { |u| Gazooy.create user_id: u.id, text: "Gazooy from @#{u.username}" }
 
     visit root_path
-    within('.navbar-inner') { click_on 'Stream' } # gazooies#index
+    within('.navbar-default') { click_on 'Stream' } # gazooies#index
 
     users.each { |u| page.should have_content "Gazooy from @#{u.username}" }
   end
