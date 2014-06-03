@@ -115,13 +115,13 @@ Ceci est un autre test"
     it 'required an authenticated user to create page' do
       visit new_page_path
       expect(page).to have_content 'Vous devez vous connecter'
-      expect(page).to have_content 'Connection'
+      expect(page).to have_content 'Connexion'
       expect(page).to have_selector '#new_user'
     end
     it 'required an authenticated user to edit page' do
       visit edit_page_path(test_page)
       expect(page).to have_content 'Vous devez vous connecter'
-      expect(page).to have_content 'Connection'
+      expect(page).to have_content 'Connexion'
       expect(page).to have_selector '#new_user'
     end
   end
